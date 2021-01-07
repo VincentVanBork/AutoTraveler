@@ -12,6 +12,7 @@ using UniversalBeacon.Library.Core.Entities;
 using UniversalBeacon.Sample.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace AutoTraveler.ViewModels
 {
@@ -35,6 +36,8 @@ namespace AutoTraveler.ViewModels
         async public Task StartScanning() {
             await Task.Delay(1000);
             InfoString = "depepe";
+
+
             StartBeaconService();
         }
         async public Task StopScanning()
@@ -56,6 +59,8 @@ namespace AutoTraveler.ViewModels
 
         private void StartBeaconService()
         {
+
+            System.Console.WriteLine("STH STH STH");
             _service = RootWorkItem.Services.Get<BeaconService>();
             if (_service == null)
             {
@@ -66,7 +71,11 @@ namespace AutoTraveler.ViewModels
 
         private void Beacons_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            Debug.WriteLine($"Beacons_CollectionChanged {sender} e {e}");
+            System.Console.WriteLine($"Beacons_CollectionChanged {sender} e {e}");
+            foreach (var beacon in Beacons)
+            {
+                System.Console.WriteLine($"Becson {beacon.BeaconType} __ {beacon.Rssi} __ {beacon.BluetoothAddressAsString}");
+            }
         }
 
 
