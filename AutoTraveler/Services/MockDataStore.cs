@@ -14,6 +14,7 @@ namespace AutoTraveler.Services
         {
             items = new List<Item>()
             {
+                //TODO TRAVELS
                 new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
                 new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
