@@ -15,10 +15,21 @@ using System.Collections.Generic;
 using Android.Support.V4.Content;
 using Xamarin.Forms;
 
+using Shiny;
+
+[assembly: ShinyApplication(
+    ShinyStartupTypeName = "AutoTraveler.StartShiny",
+    XamarinFormsAppTypeName = "Samples.App"
+)]
+[assembly: ShinyGeneratorDebug]
+
+
 namespace AutoTraveler.Droid
 {
+
+
     [Activity(Label = "AutoTraveler", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize )]
-    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
+    public partial class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         public string[] PermissionsArray = { Manifest.Permission.BluetoothPrivileged, Manifest.Permission.Bluetooth, Manifest.Permission.AccessCoarseLocation };
 
@@ -34,7 +45,7 @@ namespace AutoTraveler.Droid
 
             LoadApplication(new App());
 
-            updateNonGrantedPermissions();
+            //updateNonGrantedPermissions();
 
             try
             {
@@ -51,50 +62,57 @@ namespace AutoTraveler.Droid
 
             }
 
-            var provider = RootWorkItem.Services.Get<IBluetoothPacketProvider>();
-            if (provider == null)
-            {
-                provider = new UniversalBeacon.Library.AndroidBluetoothPacketProvider(this);
-                RootWorkItem.Services.Add<IBluetoothPacketProvider>(provider);
-            }
+            //var provider = RootWorkItem.Services.Get<IBluetoothPacketProvider>();
+            //if (provider == null)
+            //{
+            //    provider = new UniversalBeacon.Library.AndroidBluetoothPacketProvider(this);
+            //    RootWorkItem.Services.Add<IBluetoothPacketProvider>(provider);
+            //}
 
         }
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
-        {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
+        {
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            this.ShinyOnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+        //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        //{
+        //    Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        //    base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        //}
 
 
-        private void updateNonGrantedPermissions()
-        {
-            try
-            {
-                List<string> PermissionList = new List<string>();
-                PermissionList.Add(Manifest.Permission.MediaContentControl);
-                if (ContextCompat.CheckSelfPermission(Forms.Context, Manifest.Permission.BluetoothPrivileged) != (int)Android.Content.PM.Permission.Granted)
-                {
-                    PermissionList.Add(Manifest.Permission.BluetoothPrivileged);
-                }
-                if (ContextCompat.CheckSelfPermission(Forms.Context, Manifest.Permission.AccessCoarseLocation) != (int)Android.Content.PM.Permission.Granted)
-                {
-                    PermissionList.Add(Manifest.Permission.AccessCoarseLocation);
-                }
-                if (ContextCompat.CheckSelfPermission(Forms.Context, Manifest.Permission.Bluetooth) != (int)Android.Content.PM.Permission.Granted)
-                {
-                    PermissionList.Add(Manifest.Permission.Bluetooth);
-                }
-                PermissionsArray = new string[PermissionList.Count];
-                for (int index = 0; index < PermissionList.Count; index++)
-                {
-                    PermissionsArray.SetValue(PermissionList[index], index);
-                }
-            }
-            catch (Exception oExp)
-            {
+        //private void updateNonGrantedPermissions()
+        //{
+        //    try
+        //    {
+        //        List<string> PermissionList = new List<string>();
+        //        PermissionList.Add(Manifest.Permission.MediaContentControl);
+        //        if (ContextCompat.CheckSelfPermission(Forms.Context, Manifest.Permission.BluetoothPrivileged) != (int)Android.Content.PM.Permission.Granted)
+        //        {
+        //            PermissionList.Add(Manifest.Permission.BluetoothPrivileged);
+        //        }
+        //        if (ContextCompat.CheckSelfPermission(Forms.Context, Manifest.Permission.AccessCoarseLocation) != (int)Android.Content.PM.Permission.Granted)
+        //        {
+        //            PermissionList.Add(Manifest.Permission.AccessCoarseLocation);
+        //        }
+        //        if (ContextCompat.CheckSelfPermission(Forms.Context, Manifest.Permission.Bluetooth) != (int)Android.Content.PM.Permission.Granted)
+        //        {
+        //            PermissionList.Add(Manifest.Permission.Bluetooth);
+        //        }
+        //        PermissionsArray = new string[PermissionList.Count];
+        //        for (int index = 0; index < PermissionList.Count; index++)
+        //        {
+        //            PermissionsArray.SetValue(PermissionList[index], index);
+        //        }
+        //    }
+        //    catch (Exception oExp)
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 }
