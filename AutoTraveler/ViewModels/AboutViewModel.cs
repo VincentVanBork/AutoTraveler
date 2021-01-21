@@ -19,6 +19,7 @@ namespace AutoTraveler.ViewModels
     public class AboutViewModel : BaseViewModel
     {
         string infoString = string.Empty;
+        string beaconString = string.Empty;
 
         private BeaconService _service;
         public ObservableCollection<Beacon> Beacons => _service?.Beacons;
@@ -28,23 +29,24 @@ namespace AutoTraveler.ViewModels
         {
             Title = "Current Travel";
             StartScan = new Command(async () => await StartScanning());
-            StopScan = new Command(async () => await StopScanning());
-            InfoString = "helllo";
-
+            //StopScan = new Command(async () => await StopScanning());
+            InfoString = " Not Started";
+            //StartBeaconService();
+            BeaconString = " End";
         }
 
-        async public Task StartScanning() {
-            await Task.Delay(1000);
-            InfoString = "depepe";
-
-
-            StartBeaconService();
-        }
-        async public Task StopScanning()
+        async public Task StartScanning()
         {
             await Task.Delay(1000);
-            InfoString = "dheh";
+            InfoString = " Started";
+            
+            StartBeaconService();
         }
+        //async public Task StopScanning()
+        //{
+        //    await Task.Delay(1000);
+        //    InfoString = "dheh";
+        //}
 
         public ICommand StartScan { get; }
         public ICommand StopScan { get; }
@@ -57,10 +59,20 @@ namespace AutoTraveler.ViewModels
             }
         }
 
+        public string BeaconString
+        {
+            get { return beaconString; }
+
+            set
+            {
+                SetProperty(ref beaconString, value);
+            }
+        }
+
         private void StartBeaconService()
         {
 
-            System.Console.WriteLine("STH STH STH");
+            //System.Console.WriteLine("STH STH STH");
             _service = RootWorkItem.Services.Get<BeaconService>();
             if (_service == null)
             {
@@ -71,10 +83,11 @@ namespace AutoTraveler.ViewModels
 
         private void Beacons_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            System.Console.WriteLine($"Beacons_CollectionChanged {sender} e {e}");
+            //System.Console.WriteLine($"Beacons_CollectionChanged {sender} e {e}");
             foreach (var beacon in Beacons)
             {
-                System.Console.WriteLine($"Becson {beacon.BeaconType} __ {beacon.Rssi} __ {beacon.BluetoothAddressAsString}");
+                BeaconString = $"Type {beacon.BeaconType} Rssi {beacon.Rssi} BlAddr {beacon.BluetoothAddressAsString}";
+                System.Console.WriteLine($"NOWY BEKON {beacon.BeaconType} __ {beacon.Rssi} __ {beacon.BluetoothAddressAsString}");
             }
         }
 
