@@ -11,6 +11,8 @@
     <PackageReference Include="Prism.Core" Version="8.0.0.1909" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.0.0.1909" />
     <PackageReference Include="Prism.Forms" Version="8.0.0.1909" />
+    <PackageReference Include="ReactiveUI" Version="13.1.1" />
+    <PackageReference Include="ReactiveUI.Fody" Version="13.1.1" />
     <PackageReference Include="Shiny" Version="2.0.0.2434-preview" />
     <PackageReference Include="Shiny.Beacons" Version="2.0.0.2434-preview" />
     <PackageReference Include="Shiny.BluetoothLE" Version="2.0.0.2434-preview" />
@@ -31,11 +33,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ShinyBeacons\Samples\bin\Debug\netstandard2.0\" />
     <Folder Include="ViewCells\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="ShinyBeacons\Samples\Samples.csproj" />
   </ItemGroup>
 </Project>
