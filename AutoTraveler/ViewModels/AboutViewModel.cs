@@ -19,6 +19,7 @@ namespace AutoTraveler.ViewModels
     public class AboutViewModel : BaseViewModel
     {
         string infoString = string.Empty;
+        string beaconString = string.Empty;
 
         private BeaconService _service;
         public ObservableCollection<Beacon> Beacons => _service?.Beacons;
@@ -68,8 +69,8 @@ namespace AutoTraveler.ViewModels
             }
         }
 
-        //private void StartBeaconService()
-        //{
+        private void StartBeaconService()
+        {
 
             System.Console.WriteLine("STH STH STH");
             _service = RootWorkItem.Services.Get<BeaconService>();
