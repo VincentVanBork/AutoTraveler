@@ -19,11 +19,10 @@ namespace AutoTraveler.ViewModels
     public class AboutViewModel : BaseViewModel
     {
         string infoString = string.Empty;
-        string beaconString = string.Empty;
 
-        //private BeaconService _service;
-        //public ObservableCollection<Beacon> Beacons => _service?.Beacons;
-        //private Beacon _selectedBeacon;
+        private BeaconService _service;
+        public ObservableCollection<Beacon> Beacons => _service?.Beacons;
+        private Beacon _selectedBeacon;
 
         public AboutViewModel()
         {
@@ -35,18 +34,18 @@ namespace AutoTraveler.ViewModels
             BeaconString = " End";
         }
 
-        async public Task StartScanning()
-        {
+        async public Task StartScanning() {
             await Task.Delay(1000);
+            StartBeaconService();
             InfoString = " Started";
             
             //StartBeaconService();
         }
-        //async public Task StopScanning()
-        //{
-        //    await Task.Delay(1000);
-        //    InfoString = "dheh";
-        //}
+        async public Task StopScanning()
+        {
+            await Task.Delay(1000);
+            InfoString = "dheh";
+        }
 
         public ICommand StartScan { get; }
         public ICommand StopScan { get; }
@@ -72,34 +71,34 @@ namespace AutoTraveler.ViewModels
         //private void StartBeaconService()
         //{
 
-        //    //System.Console.WriteLine("STH STH STH");
-        //    _service = RootWorkItem.Services.Get<BeaconService>();
-        //    if (_service == null)
-        //    {
-        //        _service = RootWorkItem.Services.AddNew<BeaconService>();
-        //        if (_service.Beacons != null) _service.Beacons.CollectionChanged += Beacons_CollectionChanged;
-        //    }
-        //}
+            System.Console.WriteLine("STH STH STH");
+            _service = RootWorkItem.Services.Get<BeaconService>();
+            if (_service == null)
+            {
+                _service = RootWorkItem.Services.AddNew<BeaconService>();
+                if (_service.Beacons != null) _service.Beacons.CollectionChanged += Beacons_CollectionChanged;
+            }
+        }
 
-        //private void Beacons_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        //{
-        //    //System.Console.WriteLine($"Beacons_CollectionChanged {sender} e {e}");
-        //    foreach (var beacon in Beacons)
-        //    {
-        //        BeaconString = $"Type {beacon.BeaconType} Rssi {beacon.Rssi} BlAddr {beacon.BluetoothAddressAsString}";
-        //        System.Console.WriteLine($"NOWY BEKON {beacon.BeaconType} __ {beacon.Rssi} __ {beacon.BluetoothAddressAsString}");
-        //    }
-        //}
+        private void Beacons_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            //System.Console.WriteLine($"Beacons_CollectionChanged {sender} e {e}");
+            foreach (var beacon in Beacons)
+            {
+                BeaconString = $"Type {beacon.BeaconType} Rssi {beacon.Rssi} BlAddr {beacon.BluetoothAddressAsString}";
+                System.Console.WriteLine($"NOWY BEKON {beacon.BeaconType} __ {beacon.Rssi} __ {beacon.BluetoothAddressAsString}");
+            }
+        }
 
 
-        //public Beacon SelectedBeacon
-        //{
-        //    get => _selectedBeacon;
-        //    set
-        //    {
-        //        SetProperty(ref _selectedBeacon, value);
-        //    }
-        //}
+        public Beacon SelectedBeacon
+        {
+            get => _selectedBeacon;
+            set
+            {
+                SetProperty(ref _selectedBeacon, value);
+            }
+        }
 
 
 
