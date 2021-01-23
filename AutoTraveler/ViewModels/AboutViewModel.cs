@@ -27,7 +27,6 @@ namespace AutoTraveler.ViewModels
 
         public AboutViewModel()
         {
-            Title = "Current Travel";
             StartScan = new Command(async () => await StartScanning());
             //StopScan = new Command(async () => await StopScanning());
             InfoString = " Not Started";

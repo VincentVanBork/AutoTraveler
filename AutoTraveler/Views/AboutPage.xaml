@@ -16,12 +16,51 @@
     </ContentPage.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        
-        <ScrollView Grid.Row="1">
+        <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+            <Label Text="Welcome to AutoTravelerApp" FontSize="Title" Margin="0, 0, 0, 10" HorizontalOptions="CenterAndExpand" FontAttributes="Bold"/>
+            <Frame x:Name="StatusFrame" BackgroundColor="DimGray">
+                <Label x:Name="StatusString" Text="{Binding InfoString}" FontSize="Title" TextColor="White" HorizontalOptions="CenterAndExpand"/>
+            </Frame>
+        </StackLayout>
+
+        <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand">
+            <Button Text="START TRIP" Command="{Binding StartScan}" BackgroundColor="Green" TextColor="White" FontSize="Title" WidthRequest="200" HeightRequest="200" BorderRadius="100" HorizontalOptions="CenterAndExpand"/>
+            <Frame BackgroundColor="{StaticResource Primary}" Margin="0, 20, 0, 0" HorizontalOptions="FillAndExpand">
+                <StackLayout Orientation="Vertical">
+                    <Label HorizontalOptions="CenterAndExpand" FontSize="Body" TextColor="White">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="BEACON ID: "></Span>
+                                    <Span Text="{Binding BeaconString}"></Span>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"> 
+            <Button Text="TRIP HISTORY" HorizontalOptions="FillAndExpand"/>
+            <Button Text="MY WALLET" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--<ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
                 <Label Text="Main View for Travel" FontSize="Title"/>
 
@@ -53,7 +92,7 @@
                 </Label>
 
             </StackLayout>
-        </ScrollView>
+        </ScrollView>-->
     </Grid>
 
 </ContentPage>
