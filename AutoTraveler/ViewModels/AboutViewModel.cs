@@ -1,4 +1,5 @@
-﻿using OpenNETCF.IoC;
+﻿using AutoTraveler.Views;
+using OpenNETCF.IoC;
 using Plugin.Permissions;
 using System;
 using System.Collections.Generic;
@@ -24,14 +25,27 @@ namespace AutoTraveler.ViewModels
         private BeaconService _service;
         public ObservableCollection<Beacon> Beacons => _service?.Beacons;
         private Beacon _selectedBeacon;
+        public Command MyWalletCommand { get; }
+        public Command TripHistoryCommand { get; }
 
         public AboutViewModel()
         {
             StartScan = new Command(async () => await StartScanning());
+            MyWalletCommand = new Command(OnMyWalletClicked);
+            TripHistoryCommand = new Command(OnTripHistoryClicked);
             //StopScan = new Command(async () => await StopScanning());
             InfoString = " Not Started";
             //StartBeaconService();
             BeaconString = " End";
+        }
+        private async void OnTripHistoryClicked(object obj)
+        {
+            await Shell.Current.Navigation.PushModalAsync(new TripHistoryPage());
+        }
+
+        private async void OnMyWalletClicked(object obj)
+        {
+            await Shell.Current.Navigation.PushModalAsync(new MyWalletPage());
         }
 
         async public Task StartScanning()
@@ -89,6 +103,8 @@ namespace AutoTraveler.ViewModels
                 System.Console.WriteLine($"NOWY BEKON {beacon.BeaconType} __ {beacon.Rssi} __ {beacon.BluetoothAddressAsString}");
             }
         }
+
+
 
 
         public Beacon SelectedBeacon

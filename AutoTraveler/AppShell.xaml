@@ -83,6 +83,9 @@
     <FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Wallet" Icon="icon_about.png">
+        <ShellContent Route="MyWallet" ContentTemplate="{DataTemplate local:MyWalletPage}" />
+    </FlyoutItem>
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>

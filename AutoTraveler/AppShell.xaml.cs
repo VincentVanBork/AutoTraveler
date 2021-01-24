@@ -13,6 +13,8 @@ namespace AutoTraveler
             InitializeComponent();
             Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
             Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            Routing.RegisterRoute(nameof(MyWalletPage), typeof(MyWalletPage));
+            Routing.RegisterRoute(nameof(TripHistoryPage), typeof(TripHistoryPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

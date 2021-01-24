@@ -41,9 +41,9 @@
             </Frame>
         </StackLayout>
 
-        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand"> 
-            <Button Text="TRIP HISTORY" HorizontalOptions="FillAndExpand"/>
-            <Button Text="MY WALLET" HorizontalOptions="FillAndExpand"/>
+        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+            <Button Text="TRIP HISTORY" HorizontalOptions="FillAndExpand" Command="{Binding TripHistoryCommand}"/>
+            <Button Text="MY WALLET" HorizontalOptions="FillAndExpand" Command="{Binding MyWalletCommand}"/>
         </StackLayout>
 
 

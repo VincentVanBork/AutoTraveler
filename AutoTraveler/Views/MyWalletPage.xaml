@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoTraveler.Views.MyWalletPage"
+             xmlns:vm="clr-namespace:AutoTraveler.ViewModels">
+    
+    <ContentPage.BindingContext>
+        <vm:MyWalletViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <StackLayout Orientation="Vertical" VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+            <Label Text="My Wallet" FontSize="Title" Margin="0, 0, 0, 10" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" TextTransform="Uppercase"/>
+            <Frame BackgroundColor="{StaticResource Primary}" Margin="0, 20, 0, 0" HorizontalOptions="FillAndExpand">
+                <Label HorizontalOptions="CenterAndExpand" FontSize="Body" TextColor="White">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="WALLET BALANCE: "></Span>
+                                <Span Text="{Binding WalletBalance}"></Span>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Frame>
+        </StackLayout>
+        
+        <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" HorizontalOptions="FillAndExpand">
+            <Button Text="ADD FUNDS" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+        
+    </Grid>
+    
+    
+</ContentPage>
